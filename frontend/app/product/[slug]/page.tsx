@@ -102,7 +102,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
       message += ` (Size not selected yet)`;
     }
   }
-  const whatsappUrl = `https://wa.me/919550145568?text=${encodeURIComponent(message)}`;
+  const whatsappUrl = `https://wa.me/919030836231?text=${encodeURIComponent(message)}`;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-8 px-4">

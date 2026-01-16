@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { urlFor } from "../sanity/client";
@@ -17,7 +17,7 @@ interface Product {
   sizes?: { size: string; stock: number }[];
 }
 
-export default function ProductInterface({ products = [] }: { products?: Product[] }) {
+function ProductContent({ products = [] }: { products?: Product[] }) {
   const searchParams = useSearchParams();
   const [activeTab, setActiveTab] = useState<"home" | "store" | "coaching" | "streaming">("home");
   const [searchTerm, setSearchTerm] = useState("");
@@ -415,9 +415,14 @@ export default function ProductInterface({ products = [] }: { products?: Product
                 </div>
               </div>
 
-              <button className="bg-blue-600 text-white px-8 py-4 rounded-lg text-sm font-semibold hover:bg-blue-700 transition shadow-lg shadow-blue-100">
+              <a 
+                href="https://wa.me/919030836231?text=Hi,%20I%20am%20interested%20in%20booking%20a%20cricket%20coaching%20session." 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-block bg-blue-600 text-white px-8 py-4 rounded-lg text-sm font-semibold hover:bg-blue-700 transition shadow-lg shadow-blue-100"
+              >
                 BOOK YOUR SESSION
-              </button>
+              </a>
             </div>
           </div>
         )}
@@ -432,7 +437,12 @@ export default function ProductInterface({ products = [] }: { products?: Product
                 multi-camera coverage, and professional commentary.
               </p>
 
-              <div className="grid md:grid-cols-3 gap-8 mb-12">
+              <div className="grid md:grid-cols-2 gap-6 mb-12">
+                <div className="p-6 bg-gray-50 rounded-xl border border-gray-200">
+                  <div className="text-3xl mb-3">📹</div>
+                  <h4 className="font-bold text-gray-900 mb-2">Multi-Camera Setup</h4>
+                  <p className="text-sm text-gray-600">HD broadcast with multiple angles</p>
+                </div>
                 <div className="p-6 bg-gray-50 rounded-xl border border-gray-200">
                   <div className="text-3xl mb-3">📊</div>
                   <h4 className="font-bold text-gray-900 mb-2">Live Scorecard</h4>
@@ -450,14 +460,34 @@ export default function ProductInterface({ products = [] }: { products?: Product
                 </div>
               </div>
 
-              <button className="bg-purple-600 text-white px-8 py-4 rounded-lg text-sm font-semibold hover:bg-purple-700 transition shadow-lg shadow-purple-100">
+              <a 
+                href="https://wa.me/919030836231?text=Hi,%20I%20want%20to%20book%20live%20streaming%20for%20a%20tournament." 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-block bg-purple-600 text-white px-8 py-4 rounded-lg text-sm font-semibold hover:bg-purple-700 transition shadow-lg shadow-purple-100"
+              >
                 BOOK FOR TOURNAMENT
-              </button>
+              </a>
             </div>
           </div>
         )}
 
       </main>
     </div>
+  );
+}
+
+export default function ProductInterface(props: { products?: Product[] }) {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-4 border-green-600 border-t-transparent mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading Store...</p>
+        </div>
+      </div>
+    }>
+      <ProductContent {...props} />
+    </Suspense>
   );
 }
