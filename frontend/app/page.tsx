@@ -1,9 +1,9 @@
 import { client } from "./sanity/client";
 import ProductInterface from "./components/ProductInterface";
+import { Suspense } from "react"; // 1. Add this import
 
-// 1. Fetch data
+// Fetch data
 async function getProducts() {
-  // UPDATED QUERY:
   // We check if quantity > 0 OR if there are any sizes with stock > 0
   const query = `*[_type == "product" && (quantity > 0 || count(sizes[stock > 0]) > 0)] | order(_createdAt desc) {
     _id,
@@ -13,13 +13,19 @@ async function getProducts() {
     slug,
     category,
     quantity,
-    sizes // We need to fetch sizes to show stock properly
+    sizes 
   }`;
   return await client.fetch(query);
 }
 
-// 2. The Main Page
+// The Main Page
 export default async function Home() {
   const products = await getProducts();
-  return <ProductInterface products={products} />;
+  
+  return (
+    // 2. Wrap the interface in Suspense to fix the build error
+    <Suspense fallback={<div className="p-10 text-center">Loading Store...</div>}>
+      <ProductInterface products={products} />
+    </Suspense>
+  );
 }
