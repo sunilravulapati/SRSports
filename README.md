@@ -13,6 +13,17 @@ A comprehensive full-stack application built for **SR Sports** to manage cricket
 
 ---
 
+## 💡 Why Headless CMS (Sanity.io)?
+
+This project moves away from traditional monolithic platforms (like WordPress/Shopify) to a **Headless architecture**. This decoupling of the frontend (Next.js) and backend (Sanity) offers distinct advantages for a modern sports retail platform:
+
+* **⚡ Performance First:** By using Next.js for the frontend, the store delivers static-site speeds with dynamic capabilities. Pages load instantly, which is critical for e-commerce conversion rates.
+* **🔄 Real-Time Inventory:** Sanity's listener APIs allow for real-time stock updates. When a bat is sold in the physical shop via the Admin Dashboard, the stock count on the public website updates instantly without a rebuild.
+* **🛠️ Custom Schema Design:** Unlike rigid e-commerce templates, Sanity allowed us to design a data structure specifically for cricket gear (e.g., handling complex size variants for gloves/pads vs. single units for accessories).
+* **📱 Omnichannel Ready:** The content lives in the cloud via API. Currently, it serves the website, but in the future, the same data can power a mobile app, POS system, or digital kiosk without duplicating entry work.
+* **👨‍💻 Developer Experience:** Sanity Studio offers a customizable content editing environment that was tailored to the shop owner's workflow, making it easier for non-technical staff to manage products.
+
+---
 ## ✨ Features
 
 ### 🛒 Public Store (Customer Facing)
