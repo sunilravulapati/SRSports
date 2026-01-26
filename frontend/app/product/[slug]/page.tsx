@@ -75,7 +75,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
           <div className="text-6xl mb-4">😞</div>
           <h2 className="text-2xl font-bold text-gray-800 mb-2">Product Not Found</h2>
           <p className="text-gray-600 mb-6">The product you're looking for doesn't exist.</p>
-          <Link href="/" className="bg-green-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-green-700 transition inline-block">
+          <Link href="/store" className="bg-green-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-green-700 transition inline-block">
             ← Back to Store
           </Link>
         </div>
@@ -109,7 +109,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
       {/* Back Link */}
       <div className="max-w-6xl mx-auto mb-6">
         <Link 
-          href="/?tab=store" 
+          href="/store" 
           className="inline-flex items-center gap-2 text-gray-600 hover:text-green-700 font-medium transition-all hover:-translate-x-1 group"
         >
           <span className="text-xl group-hover:scale-110 transition-transform">←</span>

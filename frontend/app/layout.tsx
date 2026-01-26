@@ -1,25 +1,24 @@
 import type { Metadata } from "next";
-import { Inter, Oswald } from "next/font/google"; // Import Oswald
-import "./globals.css";
+import { Inter } from "next/font/google"; 
+import "./globals.css";  // 👈 THIS IS MISSING! ADD THIS LINE.
+import Navbar from "./components/Navbar";
 
-// 1. Configure the fonts
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const oswald = Oswald({ subsets: ["latin"], variable: "--font-oswald" });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "SR Sports",
-  description: "Premium Cricket Goods & Coaching",
+  description: "Premium Cricket Gear & Coaching",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      {/* 2. Add the variables to the body class */}
-      <body className={`${inter.variable} ${oswald.variable} font-sans bg-gray-50`}>
+      <body className={inter.className}>
+        <Navbar />
         {children}
       </body>
     </html>
