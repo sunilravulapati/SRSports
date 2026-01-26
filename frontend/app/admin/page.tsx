@@ -1,5 +1,6 @@
 "use client";
 
+export const dynamic = 'force-dynamic';
 import { client } from "../sanity/client";
 import { useState, useEffect } from "react";
 import {
